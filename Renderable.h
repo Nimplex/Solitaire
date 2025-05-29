@@ -40,25 +40,63 @@ public:
         if (x < 0 || x >= width || y < 0 || y >= height) return;
         if ((posY + y) >= screen.height) return;
 
+        bool inKey = false;
+
         for (size_t i = 0; i < text.size(); i++) {
+            const char ch = text[i];
+
+            if (ch == L'[') {
+                inKey = true;
+            }
+            else if (ch == L']') {
+                inKey = false;
+            }
+
             if ((x + i) >= width || (posX + x + i) >= screen.width) continue;
+
             const int index = (posY + y) * screen.width + posX + x + i;
-            screen.buffer[index].Char.AsciiChar = text[i];
-            screen.buffer[index].Attributes = color;
+            screen.buffer[index].Char.AsciiChar = ch;
+
+            if (inKey || ch == '[' || ch == ']') {
+                const WORD attr = (color & 0x0F) | BACKGROUND_BLUE;
+                screen.buffer[index].Attributes = attr;
+            } else {
+                screen.buffer[index].Attributes = color;
+            }
         }
     }
+
 
     void drawText(ScreenBuffer& screen, const int x, const int y, const std::wstring& text, const WORD color) const {
         if (x < 0 || x >= width || y < 0 || y >= height) return;
         if ((posY + y) >= screen.height) return;
 
+        bool inKey = false;
+
         for (size_t i = 0; i < text.size(); i++) {
+            const wchar_t ch = text[i];
+
+            if (ch == L'[') {
+                inKey = true;
+            }
+            else if (ch == L']') {
+                inKey = false;
+            }
+
             if ((x + i) >= width || (posX + x + i) >= screen.width) continue;
+
             const int index = (posY + y) * screen.width + posX + x + i;
-            screen.buffer[index].Char.UnicodeChar = text[i];
-            screen.buffer[index].Attributes = color;
+            screen.buffer[index].Char.UnicodeChar = ch;
+
+            if (inKey || ch == L'[' || ch == L']') {
+                const WORD attr = (color & 0x0F) | BACKGROUND_BLUE;
+                screen.buffer[index].Attributes = attr;
+            } else {
+                screen.buffer[index].Attributes = color;
+            }
         }
     }
+
 };
 
 #endif //RENDERABLE_H

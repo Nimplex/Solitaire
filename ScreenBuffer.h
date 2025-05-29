@@ -43,7 +43,7 @@ public:
         resizeBuffer(width, height);
     }
 
-    bool getInputChar(wchar_t &ch) {
+    static bool getInputChar(wchar_t &ch) {
         if (_kbhit()) {
             ch = _getwch();
             return true;

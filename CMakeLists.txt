@@ -15,5 +15,6 @@ add_executable(Solitaire main.cpp
         SolitaireGame.h
         TableauPile.h
         FoundationPile.h
-        Text.h
-        Menu.h)
+        Selector.h
+        ScoreManager.h
+)

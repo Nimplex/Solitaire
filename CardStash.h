@@ -1,3 +1,7 @@
+//
+// Created by pszemek on 28.05.2025.
+//
+
 #ifndef CARDSTASH_H
 #define CARDSTASH_H
 

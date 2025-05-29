@@ -35,7 +35,7 @@ public:
         return cards.size();
     }
 
-    void clear() {
+    void reset() {
         cards.clear();
     }
 

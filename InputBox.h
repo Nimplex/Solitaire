@@ -1,8 +1,13 @@
+//
+// Created by pszemek on 28.05.2025.
+//
+
 #ifndef INPUTBOX_H
 #define INPUTBOX_H
 
 #include <functional>
 #include <string>
+#include <algorithm>
 
 #include "Renderable.h"
 #include "Input.h"
@@ -47,13 +52,15 @@ public:
     void render(ScreenBuffer& screen) const {
         clear(screen);
 
+        const WORD color = active ? (BG_BLUE | FG_WHITE) : (BG_GRAY | FG_BLACK);
+
         const bool showingPlaceholder = buffer.empty();
         const std::wstring& contentRef = showingPlaceholder ? placeholder : buffer;
         const std::wstring visibleContent = getVisibleContent(contentRef, showingPlaceholder);
 
-        drawText(screen, 0, 0, prefix.c_str(), BG_BLUE | FG_WHITE);
+        drawText(screen, 0, 0, prefix.c_str(), color);
         drawText(screen, static_cast<int>(prefix.size()), 0, visibleContent.c_str(),
-                 BG_BLUE | (showingPlaceholder ? FG_GRAY : FG_WHITE));
+                 color | (showingPlaceholder ? FG_GRAY : FG_WHITE));
     }
 
 private:
@@ -76,7 +83,7 @@ private:
             isScrolled = true;
         }
 
-        int visibleLength = std::min(inputWidth - (isScrolled ? 1 : 0), static_cast<int>(content.size()) - start);
+        const int visibleLength = std::min(inputWidth - (isScrolled ? 1 : 0), static_cast<int>(content.size()) - start);
         std::wstring visible = content.substr(start, visibleLength);
 
         // Insert cursor

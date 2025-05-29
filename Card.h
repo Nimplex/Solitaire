@@ -1,3 +1,7 @@
+//
+// Created by pszemek on 27.05.2025.
+//
+
 #ifndef CARD_H
 #define CARD_H
 
@@ -17,10 +21,19 @@ enum class Suit {
 };
 
 enum class Rank {
-    Two = 2, Three, Four, Five, Six,
-    Seven, Eight, Nine, Ten,
-    Jack, Queen, King, Ace,
-    None
+    Ace = 1,    // A = 1
+    Two = 2,    // 2 = 2
+    Three = 3,  // 3 = 3
+    Four = 4,   // 4 = 4
+    Five = 5,   // 5 = 5
+    Six = 6,    // 6 = 6
+    Seven = 7,  // 7 = 7
+    Eight = 8,  // 8 = 8
+    Nine = 9,   // 9 = 9
+    Ten = 10,   // 10 = 10
+    Jack = 11,  // J = 11
+    Queen = 12, // Q = 12
+    King = 13   // K = 13
 };
 
 inline bool isRedSuit(const Suit suit) {
@@ -44,7 +57,6 @@ inline wchar_t rankToWChar(const Rank rank) {
         case Rank::Queen: return L'Q';
         case Rank::King:  return L'K';
         case Rank::Ace:   return L'A';
-        case Rank::None:  return L' ';
         case Rank::Ten:   return L'T';
         default:          return L'0' + static_cast<int>(rank);
     }

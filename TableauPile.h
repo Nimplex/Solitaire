@@ -94,6 +94,21 @@ public:
             card.setBorder(selected ? selectedCard == i : false);
             card.render(screen, i != cards.size() - 1);
         }
+
+        if (cards.size() == 0) {
+            std::array<std::wstring, 7> placeholder = {
+                L"+-----+",
+                L"|     |",
+                L"|     |",
+                L"|     |",
+                L"|     |",
+                L"|     |",
+                L"+-----+"
+            };
+            for (int i = 0; i < 7; i++) {
+                drawText(screen, 0, i, placeholder[i], FG_WHITE | BG_GREEN);
+            }
+        }
     }
 
 private:
