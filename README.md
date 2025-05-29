@@ -1,5 +1,7 @@
 # Pasjans Klondike
 
+(całość dostępna również na githubie: https://github.com/Nimplex/Solitaire)
+
 Konsolowa gra pasjans Klondike napisana w C++ z obsługą różnych poziomów trudności, systemem punktacji i funkcjami cofania ruchów.
 
 ## Wymagania systemowe
@@ -57,7 +59,7 @@ Dzięki temu polecenia `g++`, `cmake` i `make` będą dostępne w terminalu syst
 W katalogu z projektem:
 
 ```bash
-cmake -B build -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release
+cmake -B build -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-static -static-libgcc -static-libstdc++"
 ```
 
 ### Krok 2: Kompilacja
@@ -110,7 +112,7 @@ Celem gry jest przeniesienie wszystkich kart na stosy fundacyjne (górne 4 stosy
 #### Dodatkowe funkcje
 
 * **\[U]** - Cofnij ostatni ruch (maksymalnie 3 ruchy wstecz)
-* **\[R]** - Restart gry (rozpoczęcie od nowa)
+* **\[P]** - Restart gry (rozpoczęcie od nowa)
 
 ### Ekran wyników
 
